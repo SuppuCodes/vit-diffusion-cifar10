@@ -1,0 +1,5 @@
+data/
+venv/
+.sfdx/
+__pycache__/
+*.pyc
