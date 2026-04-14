@@ -1,6 +1,8 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import os
+os.makedirs("results", exist_ok=True)
 
 from models.vit import ViT
 from utils.dataset import get_dataloaders
@@ -17,7 +19,7 @@ optimizer = optim.Adam(model.parameters(), lr=3e-4, weight_decay=1e-4)
 
 scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=30)
 
-epochs = 30  # keep it reasonable for CPU
+epochs = 5  # keep it reasonable for CPU
 
 for epoch in range(epochs):
     model.train()
@@ -57,3 +59,6 @@ with torch.no_grad():
         correct += (predicted == labels).sum().item()
 
 print(f"ViT Accuracy: {100 * correct / total:.2f}%")
+
+torch.save(model.state_dict(), "results/vit_model.pth")
+print("ViT model saved!")
