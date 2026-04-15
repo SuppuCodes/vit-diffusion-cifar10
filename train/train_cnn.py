@@ -35,3 +35,22 @@ for epoch in range(epochs):
     print(f"Epoch {epoch+1}, Loss: {total_loss:.3f}")
 
 print("Training complete")
+
+correct = 0
+total = 0
+
+with torch.no_grad():
+    for images, labels in testloader:
+        images, labels = images.to(device), labels.to(device)
+
+        outputs = model(images)
+        _, predicted = torch.max(outputs, 1)
+
+        total += labels.size(0)
+        correct += (predicted == labels).sum().item()
+
+accuracy = 100 * correct / total
+print(f"CNN Accuracy: {accuracy:.2f}%")        
+
+with open("results/cnn_results.txt", "w") as f:
+    f.write(f"CNN Accuracy: {accuracy:.2f}%\n")

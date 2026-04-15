@@ -1,1 +1,1 @@
-Accuracy: 9.87%
+CNN Accuracy: 67.41%

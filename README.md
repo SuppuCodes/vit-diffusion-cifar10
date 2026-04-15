@@ -15,3 +15,46 @@ This project explores improving image classification using Vision Transformers a
 ```bash
 python train/train_cnn.py
 ```
+
+# Vision Transformers vs CNNs vs Diffusion Models on CIFAR-10
+
+## Overview
+
+This project explores and compares three deep learning architectures:
+
+- Convolutional Neural Networks (CNN)
+- Vision Transformers (ViT)
+- Diffusion Models
+
+The goal is to evaluate performance on CIFAR-10 and understand trade-offs.
+
+---
+
+## Results
+
+| Model | Accuracy |
+| ----- | -------- |
+| CNN   | 71.73%   |
+| ViT   | 69.24%   |
+
+---
+
+## Key Insights
+
+- CNN performs better on small datasets
+- ViT requires more data but is competitive
+- Diffusion models generate realistic images but are slower
+
+---
+
+## Generated Samples
+
+![Diffusion Samples](results/diffusion_samples_pretty.png)
+
+---
+
+## Setup
+
+```bash
+pip install -r requirements.txt
+```

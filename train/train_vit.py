@@ -62,3 +62,6 @@ print(f"ViT Accuracy: {100 * correct / total:.2f}%")
 
 torch.save(model.state_dict(), "results/vit_model.pth")
 print("ViT model saved!")
+
+with open("results/vit_results.txt", "w") as f:
+    f.write(f"ViT Accuracy: {100 * correct / total:.2f}%\n")

@@ -4,6 +4,8 @@ import torch.optim as optim
 import torchvision.utils as vutils
 import os
 os.makedirs("results", exist_ok=True)
+import matplotlib.pyplot as plt
+import torchvision.utils as vutils
 
 from models.unet import SimpleUNet
 from utils.dataset import get_dataloaders
@@ -52,6 +54,16 @@ model.eval()
 samples = sample(model, (16, 3, 32, 32), timesteps, betas, device)
 
 vutils.save_image(samples, "results/diffusion_samples.png", normalize=True)
+grid = vutils.make_grid(samples, nrow=4, normalize=True)
+
+plt.figure(figsize=(6,6))
+plt.imshow(grid.permute(1, 2, 0).cpu())
+plt.axis("off")
+
+plt.savefig("results/diffusion_samples_pretty.png")
+plt.show()
+
+print("Pretty samples saved!")
 
 print("Samples saved!")
 
