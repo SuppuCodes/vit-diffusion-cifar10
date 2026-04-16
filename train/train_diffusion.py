@@ -52,6 +52,8 @@ for epoch in range(epochs):
 print("Diffusion training complete")
 model.eval()
 samples = sample(model, (16, 3, 32, 32), timesteps, betas, device)
+samples = torch.clamp(samples, -1, 1)
+samples = (samples + 1) / 2 
 
 vutils.save_image(samples, "results/diffusion_samples.png", normalize=True)
 grid = vutils.make_grid(samples, nrow=4, normalize=True)

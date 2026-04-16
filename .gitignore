@@ -1,5 +1,7 @@
 data/
 venv/
-.sfdx/
+.venv/
 __pycache__/
 *.pyc
+results/*.png
+.sfdx/

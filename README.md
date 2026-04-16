@@ -58,3 +58,9 @@ The goal is to evaluate performance on CIFAR-10 and understand trade-offs.
 ```bash
 pip install -r requirements.txt
 ```
+
+## Observations
+
+- CNN performs best on CIFAR-10 due to inductive bias
+- ViT struggles due to small dataset size
+- Diffusion model learns noise but requires longer training for structure
