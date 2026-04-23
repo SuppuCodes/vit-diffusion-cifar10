@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.optim as optim
 import os
 os.makedirs("results", exist_ok=True)
+import matplotlib.pyplot as plt
 
 from models.vit import ViT
 from utils.dataset import get_dataloaders
@@ -18,7 +19,7 @@ criterion = nn.CrossEntropyLoss(label_smoothing=0.1)
 optimizer = optim.Adam(model.parameters(), lr=3e-4, weight_decay=1e-4)
 
 scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=30)
-
+losses = []
 epochs = 5  # keep it reasonable for CPU
 
 for epoch in range(epochs):
@@ -40,8 +41,16 @@ for epoch in range(epochs):
 
     print(f"Epoch {epoch+1}, Loss: {total_loss:.3f}")
     scheduler.step()
+    losses.append(total_loss)
 
 print("Training complete")
+
+plt.plot(losses)
+plt.title("ViT Training Loss")
+plt.xlabel("Epoch")
+plt.ylabel("Loss")
+plt.savefig("results/vit_loss.png")
+plt.close()
 
 # Evaluation
 model.eval()

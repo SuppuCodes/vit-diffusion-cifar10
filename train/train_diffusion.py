@@ -6,6 +6,7 @@ import os
 os.makedirs("results", exist_ok=True)
 import matplotlib.pyplot as plt
 import torchvision.utils as vutils
+import matplotlib.pyplot as plt
 
 from models.unet import SimpleUNet
 from utils.dataset import get_dataloaders
@@ -23,7 +24,7 @@ criterion = nn.MSELoss()
 
 timesteps = 50  # SMALL for CPU
 betas = linear_beta_schedule(timesteps).to(device)
-
+losses = []
 epochs = 10  # keep small
 
 for epoch in range(epochs):
@@ -48,8 +49,17 @@ for epoch in range(epochs):
         total_loss += loss.item()
 
     print(f"Epoch {epoch+1}, Loss: {total_loss:.3f}")
+    losses.append(total_loss)
 
 print("Diffusion training complete")
+
+plt.plot(losses)
+plt.title("Diffusion Training Loss")
+plt.xlabel("Epoch")
+plt.ylabel("Loss")
+plt.savefig("results/diffusion_loss.png")
+plt.close()
+
 model.eval()
 samples = sample(model, (16, 3, 32, 32), timesteps, betas, device)
 samples = torch.clamp(samples, -1, 1)

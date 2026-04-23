@@ -1,6 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.optim as optim
+import matplotlib.pyplot as plt
 
 from models.cnn import CNN
 from utils.dataset import get_dataloaders
@@ -13,12 +14,12 @@ model = CNN().to(device)
 
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.Adam(model.parameters(), lr=3e-4, weight_decay=1e-4)
-
+losses = []
 epochs = 10
 
 for epoch in range(epochs):
     total_loss = 0
-
+    
     for images, labels in trainloader:
         images, labels = images.to(device), labels.to(device)
 
@@ -33,8 +34,16 @@ for epoch in range(epochs):
         total_loss += loss.item()
 
     print(f"Epoch {epoch+1}, Loss: {total_loss:.3f}")
+    losses.append(total_loss)
 
 print("Training complete")
+
+plt.plot(losses)
+plt.title("CNN Training Loss")
+plt.xlabel("Epoch")
+plt.ylabel("Loss")
+plt.savefig("results/cnn_loss.png")
+plt.close()
 
 correct = 0
 total = 0
