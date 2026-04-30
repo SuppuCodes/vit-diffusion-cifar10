@@ -157,4 +157,4 @@ Author: Supraja Katta
 
 Full paper available here:
 
-[Download Paper](vit_diffusion_cifar_paper.pdf)
+[Download Paper](vit_diffusion_cifar10_paper.pdf)
