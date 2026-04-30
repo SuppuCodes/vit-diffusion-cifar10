@@ -148,3 +148,13 @@ https://arxiv.org/pdf/2006.11239.pdf
 ## Research Paper
 
 -- A full IEEE-style paper based on this work is included in this project.
+
+## Research Paper
+
+Title: Comparative Analysis of CNN, Vision Transformer, and Diffusion Models on CIFAR-10
+
+Author: Supraja Katta
+
+Full paper available here:
+
+[Download Paper](vit_diffusion_cifar_paper.pdf)
